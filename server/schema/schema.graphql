@@ -1,0 +1,18 @@
+
+type Query {
+    info: String!
+    patientInfo: [Patient!]!
+}
+
+type Mutation {
+    post(title: String!, forname: String!, surname: String!, age: Int!, nhsnum: Int!): Patient!
+}
+
+type Patient {
+    id: ID!
+    title: String!
+    forname: String!
+    surname: String!
+    age: Int!
+    nhsnum: Int!
+}

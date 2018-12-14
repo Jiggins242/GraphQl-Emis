@@ -1,0 +1,11 @@
+
+
+type Patient {
+    id: ID! @unique
+    createdAt: DateTime!
+    title: String!
+    forname: String!
+    surname: String!
+    age: Int!
+    nhsnum: Int! @unique
+}

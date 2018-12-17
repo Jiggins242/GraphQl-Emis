@@ -1,0 +1,404 @@
+# source: http://localhost:4466
+# timestamp: Mon Dec 17 2018 11:22:21 GMT+0000 (Greenwich Mean Time)
+
+type AggregatePatient {
+  count: Int!
+}
+
+type BatchPayload {
+  """The number of nodes that have been affected by the Batch operation."""
+  count: Long!
+}
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createPatient(data: PatientCreateInput!): Patient!
+  updatePatient(data: PatientUpdateInput!, where: PatientWhereUniqueInput!): Patient
+  deletePatient(where: PatientWhereUniqueInput!): Patient
+  upsertPatient(where: PatientWhereUniqueInput!, create: PatientCreateInput!, update: PatientUpdateInput!): Patient!
+  updateManyPatients(data: PatientUpdateManyMutationInput!, where: PatientWhereInput): BatchPayload!
+  deleteManyPatients(where: PatientWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type Patient implements Node {
+  id: ID!
+  title: String!
+  forname: String!
+  surname: String!
+  age: Int!
+  nhsnum: Int!
+}
+
+"""A connection to a list of items."""
+type PatientConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [PatientEdge]!
+  aggregate: AggregatePatient!
+}
+
+input PatientCreateInput {
+  title: String!
+  forname: String!
+  surname: String!
+  age: Int!
+  nhsnum: Int!
+}
+
+"""An edge in a connection."""
+type PatientEdge {
+  """The item at the end of the edge."""
+  node: Patient!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum PatientOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  forname_ASC
+  forname_DESC
+  surname_ASC
+  surname_DESC
+  age_ASC
+  age_DESC
+  nhsnum_ASC
+  nhsnum_DESC
+}
+
+type PatientPreviousValues {
+  id: ID!
+  title: String!
+  forname: String!
+  surname: String!
+  age: Int!
+  nhsnum: Int!
+}
+
+type PatientSubscriptionPayload {
+  mutation: MutationType!
+  node: Patient
+  updatedFields: [String!]
+  previousValues: PatientPreviousValues
+}
+
+input PatientSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PatientSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PatientSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PatientSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: PatientWhereInput
+}
+
+input PatientUpdateInput {
+  title: String
+  forname: String
+  surname: String
+  age: Int
+  nhsnum: Int
+}
+
+input PatientUpdateManyMutationInput {
+  title: String
+  forname: String
+  surname: String
+  age: Int
+  nhsnum: Int
+}
+
+input PatientWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PatientWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PatientWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PatientWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  title: String
+
+  """All values that are not equal to given value."""
+  title_not: String
+
+  """All values that are contained in given list."""
+  title_in: [String!]
+
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+
+  """All values less than the given value."""
+  title_lt: String
+
+  """All values less than or equal the given value."""
+  title_lte: String
+
+  """All values greater than the given value."""
+  title_gt: String
+
+  """All values greater than or equal the given value."""
+  title_gte: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  forname: String
+
+  """All values that are not equal to given value."""
+  forname_not: String
+
+  """All values that are contained in given list."""
+  forname_in: [String!]
+
+  """All values that are not contained in given list."""
+  forname_not_in: [String!]
+
+  """All values less than the given value."""
+  forname_lt: String
+
+  """All values less than or equal the given value."""
+  forname_lte: String
+
+  """All values greater than the given value."""
+  forname_gt: String
+
+  """All values greater than or equal the given value."""
+  forname_gte: String
+
+  """All values containing the given string."""
+  forname_contains: String
+
+  """All values not containing the given string."""
+  forname_not_contains: String
+
+  """All values starting with the given string."""
+  forname_starts_with: String
+
+  """All values not starting with the given string."""
+  forname_not_starts_with: String
+
+  """All values ending with the given string."""
+  forname_ends_with: String
+
+  """All values not ending with the given string."""
+  forname_not_ends_with: String
+  surname: String
+
+  """All values that are not equal to given value."""
+  surname_not: String
+
+  """All values that are contained in given list."""
+  surname_in: [String!]
+
+  """All values that are not contained in given list."""
+  surname_not_in: [String!]
+
+  """All values less than the given value."""
+  surname_lt: String
+
+  """All values less than or equal the given value."""
+  surname_lte: String
+
+  """All values greater than the given value."""
+  surname_gt: String
+
+  """All values greater than or equal the given value."""
+  surname_gte: String
+
+  """All values containing the given string."""
+  surname_contains: String
+
+  """All values not containing the given string."""
+  surname_not_contains: String
+
+  """All values starting with the given string."""
+  surname_starts_with: String
+
+  """All values not starting with the given string."""
+  surname_not_starts_with: String
+
+  """All values ending with the given string."""
+  surname_ends_with: String
+
+  """All values not ending with the given string."""
+  surname_not_ends_with: String
+  age: Int
+
+  """All values that are not equal to given value."""
+  age_not: Int
+
+  """All values that are contained in given list."""
+  age_in: [Int!]
+
+  """All values that are not contained in given list."""
+  age_not_in: [Int!]
+
+  """All values less than the given value."""
+  age_lt: Int
+
+  """All values less than or equal the given value."""
+  age_lte: Int
+
+  """All values greater than the given value."""
+  age_gt: Int
+
+  """All values greater than or equal the given value."""
+  age_gte: Int
+  nhsnum: Int
+
+  """All values that are not equal to given value."""
+  nhsnum_not: Int
+
+  """All values that are contained in given list."""
+  nhsnum_in: [Int!]
+
+  """All values that are not contained in given list."""
+  nhsnum_not_in: [Int!]
+
+  """All values less than the given value."""
+  nhsnum_lt: Int
+
+  """All values less than or equal the given value."""
+  nhsnum_lte: Int
+
+  """All values greater than the given value."""
+  nhsnum_gt: Int
+
+  """All values greater than or equal the given value."""
+  nhsnum_gte: Int
+}
+
+input PatientWhereUniqueInput {
+  id: ID
+  nhsnum: Int
+}
+
+type Query {
+  patients(where: PatientWhereInput, orderBy: PatientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Patient]!
+  patient(where: PatientWhereUniqueInput!): Patient
+  patientsConnection(where: PatientWhereInput, orderBy: PatientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PatientConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+type Subscription {
+  patient(where: PatientSubscriptionWhereInput): PatientSubscriptionPayload
+}

@@ -41,7 +41,7 @@ async function signup(parent, args, context, info) {
   async function login(parent, args, context, info) {
 
     // Prisma binding instance to retrieve the existing User record by the email address that was sent along in the login mutation
-    const user = await context.db.query.user({ where: { email: args.email } }, ` { id password } `)
+    const user = await context.db.query.user({ where: { userName: args.userName } }, ` { id password } `)
     if (!user) {
       throw new Error('No such user found')
     }

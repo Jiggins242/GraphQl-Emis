@@ -12,7 +12,7 @@ type User {
     title: String!
     forname: String!
     surname: String!
-    userName: String!
+    userName: String! @unique
     password: String!
     jobRole: String!
     email: String! @unique

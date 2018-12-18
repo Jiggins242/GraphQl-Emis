@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Mon Dec 17 2018 13:52:38 GMT+0000 (Greenwich Mean Time)
+# timestamp: Tue Dec 18 2018 09:24:41 GMT+0000 (Greenwich Mean Time)
 
 type AggregatePatient {
   count: Int!
@@ -879,5 +879,6 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  userName: String
   email: String
 }

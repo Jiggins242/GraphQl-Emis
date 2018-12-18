@@ -6,3 +6,14 @@ type Patient {
     age: Int!
     nhsnum: Int! @unique
 }
+
+type User {
+    id: ID! @id @unique
+    title: String!
+    forname: String!
+    surname: String!
+    userName: String!
+    password: String!
+    jobRole: String!
+    email: String! @unique
+}

@@ -6,5 +6,23 @@ type Query {
 }
 
 type Mutation {
-    post(title: String!, forname: String!, surname: String!, age: Int!, nhsnum: Int!): Patient!
+    post (title: String!, forname: String!, surname: String!, age: Int!, nhsnum: Int!): Patient!
+    signup (email: String!, password: String!, userName: String!, title: String!, forname: String!, surname: String!, jobRole: String!): AuthPayload
+    login (password: String!, email: String!): AuthPayload
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type User {
+  id: ID
+  userName: String
+  email: String
+  title: String
+  forname: String
+  surname: String
+  jobRole: String
+
 }

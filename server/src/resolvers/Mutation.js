@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const { APP_SECRET, getUserId } = require('../src/utils')
+const { APP_SECRET, getUserId } = require('../utils')
 
 function post(parent, args, context, info) {
   const userId = getUserId(context)
@@ -18,6 +18,9 @@ function post(parent, args, context, info) {
   )
 }
 
+
+// Sign up and Login mutation, using passwrod hashing from jwt 
+//============================================================
 async function signup(parent, args, context, info) {
 
     //  Is encrypting the User’s password using the bcryptjs library 

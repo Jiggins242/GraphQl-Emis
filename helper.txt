@@ -31,3 +31,38 @@ mutation{
     id
   }
 }
+
+
+add a user account to the db 
+========================================
+mutation{
+  signup(
+    email:"julius.m.hibbert@springfieldhospital.com"
+ 		password: "test123"
+  	userName: "Hibbert92"
+  	title: "Dr"
+  	forname: "Julius"
+  	surname: "Hibbert"
+  	jobRole: "Doctor")
+  {token
+  user{
+    id
+  }}
+}
+
+
+to login in with a user account 
+========================================
+mutation{
+  login(
+ 		password: "test123"
+  	userName: "Hibbert92"
+  ){token
+  	user{
+      title
+      forname
+      surname
+    }}
+}
+
+

@@ -1,0 +1,34 @@
+ 
+Patient Info in the db 
+===================================================
+
+  "data": {
+    "patientInfo": [
+      {
+        "id": "5c17871de03dd80007db934c",
+        "title": "Mrs",
+        "forname": "Marge",
+        "surname": "Simpsons",
+        "age": 36,
+        "nhsnum": 54321
+      },
+      {
+        "id": "5c178f6ee03dd80007db934e",
+        "title": "Mr",
+        "forname": "Homer",
+        "surname": "Simpson",
+        "age": 39,
+        "nhsnum": 12345
+               
+=====================================================
+User information
+=====================================================
+
+  signup(
+    email:"julius.m.hibbert@springfieldhospital.com"
+ 		password: "test123"
+  	userName: "Hibbert92"
+  	title: "Dr"
+  	forname: "Julius"
+  	surname: "Hibbert"
+  	jobRole: "Doctor")

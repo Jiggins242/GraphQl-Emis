@@ -1,7 +1,8 @@
-Run nodemon app in server dir
+Run nodemon app-server in server dir to run the server 
 run graphql playground in server dir
 run prisma deploy in server dir
-
+---------------------------------------------------------
+Showing of correct querys and mutations for the graphql server 
 
 first simple query of the information 
 ================================

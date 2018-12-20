@@ -4,7 +4,7 @@ import gql from 'graphql-tag'
 
 import Patient from './Patient'
 
-const PatientInfo_Query = gql `
+const PATIENTINFO_QUERY = gql `
 {
     patientInfo{
         id
@@ -13,27 +13,25 @@ const PatientInfo_Query = gql `
         surname
         age
         nhsnum
-      }
+    }
 }`
 
 class PatientList extends Component {
     render() {
-        const patientsToRender = [
-            {
-                id: '1',
-                forname: 'Marge',
-                surname: 'Simpson'
-            },
-            {
-                id: '2',
-                forname: 'Homer',
-                surname: 'Simpson'
-            },
-        ]
-
         return (
-            <Query query={PatientInfo_Query}>
-                {() => patientsToRender.map(patient => <Patient key={patient.id} patient={patient}/>)}
+            <Query query={PATIENTINFO_QUERY}>
+            {({ loading, error, data }) => {
+                if (loading) return <div>Fetching</div>
+                if (error) return <div>Error</div>
+
+                const patientsToRender = data.patientInfo
+
+                return (
+                    <div>
+                         {patientsToRender.map(patient => <Patient key={patient.id} patient={patient} />)}
+                    </div>
+                )
+            }}
             </Query>
         )
     }

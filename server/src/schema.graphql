@@ -6,7 +6,7 @@ type Query {
 }
 
 type Mutation {
-    post (title: String!, forname: String!, surname: String!, age: Int!, nhsnum: Int!): Patient!
+    post (title: String!, forname: String!, surname: String!, age: Int!, nhsnum: Int!): Patient
     signup (email: String!, password: String!, userName: String!, title: String!, forname: String!, surname: String!, jobRole: String!): AuthPayload
     login (password: String!, userName: String!): AuthPayload
 }

@@ -2,8 +2,8 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { APP_SECRET, getUserId } = require('../utils')
 
-function post(parent, args, context, info) {
-  const userId = getUserId(context)
+function post(parent, args, context) {
+  //const userId = getUserId(context)
   return context.db.mutation.createPatient(
     {
       data: {
@@ -13,8 +13,7 @@ function post(parent, args, context, info) {
         age: args.age,
         nhsnum: args.nhsnum,
       },
-    },
-    info,
+    }
   )
 }
 
@@ -66,5 +65,6 @@ async function signup(parent, args, context, info) {
   
   module.exports = {
       signup,
-      login
+      login,
+      post
   }

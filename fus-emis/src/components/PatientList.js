@@ -4,7 +4,8 @@ import gql from 'graphql-tag'
 
 import Patient from './Patient'
 
-const PATIENTINFO_QUERY = gql `
+const PATIENTINFO_QUERY = gql 
+`
 {
     patientInfo{
         id

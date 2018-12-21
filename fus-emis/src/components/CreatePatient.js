@@ -15,6 +15,8 @@ const POST_MUTATION = gql
     }
 }`
 
+// This is rendering the form for the create a patient inputs for React.
+// ===================================================================== 
 class CreatePatient extends Component {
     state ={
         title: '',

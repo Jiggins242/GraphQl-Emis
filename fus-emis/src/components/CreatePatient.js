@@ -53,7 +53,7 @@ class CreatePatient extends Component {
                       <input
                          className="mb2"
                          value={age}
-                        // onChange={e => this.setState({ age: e.target.value })}
+                        // the parseFloat converts the string into an Int so it conforms to the DB rules i have set up in the schema
                          onChange={e => this.setState({age: parseFloat(e.target.value)} )}
                          type="text"
                          placeholder="Age of the patient"
@@ -66,8 +66,11 @@ class CreatePatient extends Component {
                          placeholder="Nhs Number for the patient"
                     />
                 </div>
-                    <Mutation mutation={POST_MUTATION} variables={{ title, forname, surname, age, nhsnum}}>
-                        {post => <button onClick={post}>Submit</button>}
+                    <Mutation mutation={POST_MUTATION}
+                              variables={{ title, forname, surname, age, nhsnum}}
+                              onCompleted={() => this.props.history.push('/')}
+                              >
+                              {post => <button onClick={post}>Submit</button>}
                     </Mutation>           
             </div>
         )

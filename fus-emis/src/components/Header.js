@@ -30,11 +30,11 @@ class Header extends Component {
                                      this.props.history.push('/')
                                  }}
                             >
-                                logout
+                                Logout
                             </div>
                         ) : (
                             <Link to="/login" className="mli no-underline black">
-                                login
+                                Login
                             </Link>
                         )}
                 </div>

@@ -10,6 +10,8 @@ mutation LoginMutation($userName: String!, $password: String!) {
         token
         user {
             id
+            forname
+            surname
         }
     }
 }

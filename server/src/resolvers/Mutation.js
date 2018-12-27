@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const { APP_SECRET, getUserId } = require('../utils')
 
 function post(parent, args, context) {
-  //const userId = getUserId(context)
+  const userId = getUserId(context)
   return context.db.mutation.createPatient(
     {
       data: {

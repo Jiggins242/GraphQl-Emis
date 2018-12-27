@@ -1,93 +1,69 @@
 import React, { Component } from 'react'
-import {AUTH_TOKEN } from '../constants'
-import { Mutation } from 'react-apollo'
+import { AUTH_TOKEN } from '../constants'
 import gql from 'graphql-tag'
+import { Mutation } from 'react-apollo'
 
-const SIGNUP_MUTATION = gql
+const LOGIN_MUTATION =gql
 `
-mutation SignupMutation($email: String!, $password: String!, $username: String!) {
-    signup(email: $email, password: $password, username: $username) {
+mutation LoginMutation($userName: String!, $password: String!) {
+    login(userName: $userName, password: $password){
         token
+        user {
+            id
+        }
     }
 }
-`
-
-const LOGIN_MUTATION = gql
-`
-mutation LoginMutation($username: String!, $passsword: String!) {
-    login(username: $username, password: $password) {
-        token
-    }
-
-}
-
 `
 
 class Login extends Component {
     state = {
-        login: true, // switch between Login and Signup
-        email: '',
-        username: '',
-        password: ''
+       userName: '',
+       password: '' 
     }
-// *******************************************************************
-// This will check the username given to see if that user exsist
-// If they do, it will render out the email form and password to allow to login
-// If not they will be propmted to sign up
+
     render () {
-        const { login, email, username, password} = this.state
+        const { userName, password } = this.state
+
         return (
             <div>
-                <h4 className="mv3">{login ? 'Login' : 'Sign Up'}</h4>
-                <div className="flex flex-column">
-                    {!login && (
-                        <input
-                            value={email}
-                            onChange={e => this.setState({ email: e.target.value})}
-                            type="text"
-                            placeholder="Your name"
-                        />
-                    )}
-                        <input
-                            value={username}
-                            onChange={e => this.setState({ username: e.target.value})}
-                            type="text"
-                            placeholder="Your Username"
-                        />
-                        <input
-                            value={password}
-                            onChange={e => this.setState({ password: e.target.value})}
-                            type="text"
-                            placeholder="Your Password"
-                        />  
+                <h4 className="mv3"> {'Login'}</h4>
+                <div 
+                    className="flex flex-column">
+                    <input
+                        value={userName}
+                        onChange={e => this.setState({ userName: e.target.value})}
+                        type="text"
+                        placeholder="Username"
+                    />
+                    <input
+                        value={password}
+                        onChange={e => this.setState({ password: e.target.value})}
+                        type="text"
+                        placeholder="Password"
+                    />
                 </div>
-                <div className="flex mt3">
-                    <Mutation
-                        mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
-                        variables={{ username, password}}
-                        onCompleted={data => this._confirm(data)}
-                        >
-                        {mutation => (
-                            <div className="pointer mr2 button" onClick={mutation}>
-                                {login ? 'login' : 'create account'}
-                            </div>
-                        )}
-                    </Mutation>
-                    <div 
-                        className="pointer button" 
-                        onClick={() => this.setState({ login: !login})}
-                        >
-                            {login
-                                ? 'You need to create an account'
-                                : 'You already have an account'}
-                    </div>
+                <div
+                    className="flex mt3">  
+                        <Mutation
+                            mutation={LOGIN_MUTATION}
+                            variables={{userName, password}}
+                            onCompleted={data => this._confirm(data)}
+                        >  
+                            {mutation => (
+                                <div
+                                    className="pointer button"
+                                    onClick={mutation}>
+                                    {'Login'}
+                                </div>
+                            )}
+                        </Mutation>
                 </div>
-            </div>                   
+            </div>
         )
     }
 
     _confirm = async data => {
-        const { token } = this.state.login ? data.login : data.signup
+        const { token } = this.state.login = data.login
         this._saveUserData(token)
         this.props.history.push('/')
     }
@@ -97,4 +73,4 @@ class Login extends Component {
     }
 }
 
-export default Login 
+export default Login

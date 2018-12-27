@@ -28,7 +28,7 @@ async function signup(parent, args, context, info) {
     // Prisma binding instance to store the new User in the database
     const user = await context.db.mutation.createUser({
       data: { ...args, password },
-    }, `{ id }`)
+    })
   
     // Generating a JWT which is signed with an APP_SECRET
     const token = jwt.sign({ userId: user.id }, APP_SECRET)

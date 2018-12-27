@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 
 const POST_MUTATION = gql
 `mutation Post($title: String!, $forname: String!, $surname: String!, $age: Int!, $nhsnum: Int!) {
-    post(title: $title,forname: $forname, surname: $surname, age: $age, nhsnum: $nhsnum) {
+    post(title: $title, forname: $forname, surname: $surname, age: $age, nhsnum: $nhsnum) {
         id
         title
         forname

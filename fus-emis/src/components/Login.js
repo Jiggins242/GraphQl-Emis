@@ -25,7 +25,6 @@ class Login extends Component {
 
     render () {
         const { userName, password } = this.state
-
         return (
             <div>
                 <h4 className="mv3"> {'Login'}</h4>
@@ -67,7 +66,7 @@ class Login extends Component {
     _confirm = async data => {
         const { token } = this.state.login = data.login
         this._saveUserData(token)
-        this.props.history.push('/')
+        this.props.history.push('/user')
     }
 // ============================================================================
 // At the moment the token is stored locally. This is not safe or good practice.

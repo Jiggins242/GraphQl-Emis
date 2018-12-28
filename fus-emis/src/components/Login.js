@@ -69,7 +69,8 @@ class Login extends Component {
         this._saveUserData(token)
         this.props.history.push('/')
     }
-
+// ============================================================================
+// At the moment the token is stored locally. This is not safe or good practice.
     _saveUserData = token => {
         localStorage.setItem(AUTH_TOKEN, token)
     }

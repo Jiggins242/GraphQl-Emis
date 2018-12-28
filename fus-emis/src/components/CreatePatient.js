@@ -55,7 +55,8 @@ class CreatePatient extends Component {
                       <input
                          className="mb2"
                          value={age}
-                        // the parseFloat converts the string into an Int so it conforms to the DB rules i have set up in the schema
+                         // ================================================================================================================
+                         // the parseFloat converts the string into an Int so it conforms to the DB rules I have set up in the schema = Int!
                          onChange={e => this.setState({age: parseFloat(e.target.value)} )}
                          type="text"
                          placeholder="Age of the patient"
@@ -63,6 +64,8 @@ class CreatePatient extends Component {
                      <input
                          className="mb2"
                          value={nhsnum}
+                         // ================================================================================================================
+                         // the parseFloat converts the string into an Int so it conforms to the DB rules I have set up in the schema = Int!
                          onChange={e => this.setState({nhsnum: parseFloat(e.target.value)} )}
                          type="int"
                          placeholder="Nhs Number for the patient"

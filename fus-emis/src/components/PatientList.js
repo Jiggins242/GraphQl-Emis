@@ -22,6 +22,8 @@ class PatientList extends Component {
     render() {
         const authToken = localStorage.getItem(AUTH_TOKEN)
         return (
+            // ===============================================================================>
+            // If the user is logged in and has the "authtoken" we show the patients to render
             <div>
                 {authToken ? (
                 <Query query={PATIENTINFO_QUERY}>
@@ -39,6 +41,8 @@ class PatientList extends Component {
                 }}
                 </Query> 
                 ) : (
+                // ===============================================================================================>
+                // However if no user is logged in we dont show the patients we present a message instead top them
                     <div>
                         <h4>
                         Login to use

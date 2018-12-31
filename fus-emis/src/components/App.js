@@ -6,6 +6,7 @@ import CreatePatient from './CreatePatient'
 import Header from './Header'
 import Login from './Login'
 import UserList from './UserList'
+import Search from './Search'
 
 class App extends Component {
   render () {
@@ -18,6 +19,7 @@ class App extends Component {
             <Route exact path="/create" component={CreatePatient} /> 
             <Route exact path="/login" component={Login} />
             <Route exact path="/user" component={UserList} />
+            <Route exact path="/search" component={Search} />
           </Switch>
         </div>
       </div>
